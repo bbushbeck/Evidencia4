@@ -19,6 +19,9 @@ class Graph {
         void print();
         void BFS();
         void DFS();
+
+        // Método para obtener el número de aristas
+        int getEdges(int node);
 };
 
 Graph::Graph(int order, bool isD){
@@ -122,6 +125,17 @@ void Graph::DFS(){
                 }
             }
         }
+    }
+}
+
+// Método para obtener el número de aristas (Fan-out) de un nodo
+int Graph::getEdges(int node){
+    if(node < 0 || node >= numVertices){
+        cout << "Nodo inválido." << endl;
+        return -1;
+    }else{
+        LinkedList<int> currList = adjList.getData(node);
+        return currList.getSize() - 1; // Restar 1 para no contar el nodo mismo
     }
 }
 

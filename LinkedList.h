@@ -267,7 +267,7 @@ LinkedList<T> &LinkedList<T>::operator=(const LinkedList<T>&other){
         curr = curr->next;
         otherCurr = otherCurr->next;
     }
-    size = other.size
+    size = other.size;
 
     return *this;
 }
