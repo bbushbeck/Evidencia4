@@ -1,3 +1,13 @@
+
+/* María Fernanda García Bushbeck A01199490
+César Tadeo Bernal Sauceda A00841810
+Regina Aguilar García A00841923
+
+Fecha: 30/11/2025
+
+Este archivo tiene como finalidad el poder determinar los fan-outs de cada nodo, y
+de ahí, poder saber los nodos con mayor fan-out y los posibles botmasters. */
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -8,6 +18,7 @@
 using namespace std;
 
 // Asignar un índice a cada IP para poder insertarla en el grafo
+// Complejidad O(n)
 int assignIndex(string ip, string IPs[], int size){
     for(int i = 0; i < size; i++){
         if(IPs[i] == ip){
@@ -18,6 +29,7 @@ int assignIndex(string ip, string IPs[], int size){
 }
 
 int main(){
+    // Se inicializa el archivo a trabajar así como el número de IPs y aristas
     ifstream archivo("bitacora_EV4.txt");
     string linea;
     int numIPs = 0;
@@ -47,6 +59,8 @@ int main(){
             continue;
         }
 
+        // Debido a que el archivo contiene las IPs de origen y IPs de destino, se inicializan 
+        // las siguientes variables para leer correctamente el archivo txt
         DefDatos datos(linea);
         string ip1 = datos.getIpOrigen();
         string ip2 = datos.getIpDestino();
@@ -63,11 +77,49 @@ int main(){
     }
 
     archivo.close();
-    
+
+    // Para obtener el top 5 de nodos con mayor fan-outs, se inicializa el top índice y el top de fan-outs
+    const int num = 5;
+    int topIdx[num] = {-1, -1, -1, -1, -1};
+    int topFan[num] = {-1, -1, -1, -1, -1}; 
+
+    // Determina el fan-out de cada nodo
     for(int i = 0; i < numIPs; i++){
         int fanout = GraphIps.getEdges(i);
-        cout << IPs[i] << " tiene fan-out: " << GraphIps.getEdges(i) << endl;
+
+        // Nodos que tienen el mayor fan-out se desplegarán en este Top 5
+        // Top 5 (descendente) de los nodos con mayores fan-outs
+        int pos = 0;
+        while(pos < num && !(fanout > topFan[pos])) pos++;
+            if(pos < num){
+                for(int j = num-1; j > pos; j--){
+                    topFan[j] = topFan[j-1];
+                    topIdx[j] = topIdx[j-1];
+                }
+                topFan[pos] = fanout;
+                topIdx[pos] = i;
+            }
     }
+
+    // Limita la impresión dependiendo de realmente cuantas IPs hayan
+    // para evitar errores respecto a la impresión del top 5
+    int topNodos;
+    if(numIPs < num){
+        topNodos = numIPs;
+    }else{
+        topNodos = num;
+    }
+
+    // Se despliega el top 5 de nodos con mayor fan-outs
+    cout << "=== TOP 5 NODOS CON MAYOR FAN OUTS (POSIBLES BOTMASTERS) ===" << endl;
+    int printed = 0;
+    for(int k = 0; k < num && printed < topNodos; k++){
+        if(topIdx[k] != -1){
+            cout << k+1 << ". " << IPs[topIdx[k]] << " fan-outs: " << topFan[k] << endl;
+            printed++;
+        }
+    } 
+
 
     return 0;
 }

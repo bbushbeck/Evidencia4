@@ -1,3 +1,11 @@
+/* María Fernanda García Bushbeck A01199490
+César Tadeo Bernal Sauceda A00841810
+Regina Aguilar García A00841923
+
+Fecha: 30/11/2025
+
+Este archivo tiene como finalidad armar la clase LinkedList para usarla como apoyo en la realización de la clase Graph. */
+
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
@@ -39,6 +47,7 @@ LinkedList<T>::LinkedList() {
     size = 0;
 }
 
+// O(1)
 template <class T>
 void LinkedList<T>::addFirst(T valor) {
     Node<T> *newNode = new Node<T>(valor);
@@ -47,6 +56,7 @@ void LinkedList<T>::addFirst(T valor) {
     size++;
 }
 
+// O(n)
 template <class T>
 void LinkedList<T>::addLast(T valor) {
     Node<T> *newNode = new Node<T>(valor);
@@ -62,6 +72,7 @@ void LinkedList<T>::addLast(T valor) {
     size++;
 }
 
+// O(n)
 template <class T>
 bool LinkedList<T>::addIndex(T valor, int index) {
     if (index < 0 || index > size) {
@@ -86,6 +97,7 @@ bool LinkedList<T>::addIndex(T valor, int index) {
     }
 }
 
+// O(1)
 template <class T>
 bool LinkedList<T>::deleteFirst() {
     if (head == nullptr) {
@@ -99,6 +111,7 @@ bool LinkedList<T>::deleteFirst() {
     }
 }
 
+// O(n)
 template <class T>
 bool LinkedList<T>::deleteLast() {
     if (head == nullptr) {
@@ -120,6 +133,7 @@ bool LinkedList<T>::deleteLast() {
     return true;
 }
 
+// O(n)
 template <class T>
 bool LinkedList<T>::deleteIndex(int index) {
     if (index < 0 || index >= size) {
@@ -142,6 +156,7 @@ bool LinkedList<T>::deleteIndex(int index) {
     }
 }
 
+// O(n)
 template <class T>
 void LinkedList<T>::deleteAll() {
     while (head != nullptr) {
@@ -152,6 +167,7 @@ void LinkedList<T>::deleteAll() {
     }
 }
 
+// O(n)
 template <class T>
 void LinkedList<T>::print() {
     Node<T> *curr = head;
@@ -162,16 +178,19 @@ void LinkedList<T>::print() {
     cout << endl;
 }
 
+// O(1)
 template <class T>
 int LinkedList<T>::getSize() {
     return size;
 }
 
+// O(n)
 template <class T>
 LinkedList<T>::~LinkedList() {
     deleteAll();
 }
 
+// O(n)
 template <class T>
 T LinkedList<T>::getData(int index){
     if(index < 0 || index >= size){
@@ -186,6 +205,7 @@ T LinkedList<T>::getData(int index){
     }
 }
 
+// O(n)
 template <class T>
 int LinkedList<T>::getIndex(T value){
     Node<T> *curr = head;
@@ -199,6 +219,7 @@ int LinkedList<T>::getIndex(T value){
     return -1; 
 }
 
+// O(n)
 template <class T>
 bool LinkedList<T>::setAtIndex(T value, int index){
     if(index < 0 || index >= size){
@@ -213,6 +234,7 @@ bool LinkedList<T>::setAtIndex(T value, int index){
     return true;
 }
 
+// O(n)
 template <class T>
 bool LinkedList<T>::swapData(int index1, int index2){
     if(index1 < 0 || index1 >= size || index2 < 0 || index2 >= size){
@@ -235,6 +257,7 @@ bool LinkedList<T>::swapData(int index1, int index2){
     return true;
 }
 
+// O(n)
 template <class T>
 LinkedList<T>::LinkedList(const LinkedList<T> &other){
     head = new Node<T>(other.head->data);
@@ -248,6 +271,7 @@ LinkedList<T>::LinkedList(const LinkedList<T> &other){
     size = other.size;
 }
 
+// O(n)
 template <class T>
 LinkedList<T> &LinkedList<T>::operator=(const LinkedList<T>&other){
     if(this == &other){

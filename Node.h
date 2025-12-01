@@ -1,3 +1,11 @@
+/* María Fernanda García Bushbeck A01199490
+César Tadeo Bernal Sauceda A00841810
+Regina Aguilar García A00841923
+
+Fecha: 30/11/2025
+
+Este archivo tiene como finalidad armar la clase Node para usarla como apoyo en la realización de la clase LinkedList. */
+
 #ifndef NODE_H
 #define NODE_H
 

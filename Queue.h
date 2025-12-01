@@ -1,3 +1,11 @@
+/* María Fernanda García Bushbeck A01199490
+César Tadeo Bernal Sauceda A00841810
+Regina Aguilar García A00841923
+
+Fecha: 30/11/2025
+
+Este archivo tiene como finalidad armar la clase Queue para usarla como apoyo en la realización de la clase Graph. */
+
 #ifndef QUEUE_H
 #define QUEUE_H
 
